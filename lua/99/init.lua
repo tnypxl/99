@@ -359,7 +359,8 @@ end
 
 function _99.view_logs()
   local requests = _99_state.tracking.history
-  capture_request(requests, function(r)
+  select_window(requests, function(idx)
+    local r = requests[idx]
     local logs = Logger.logs_by_id(r.xid)
     if logs == nil then
       logs = { "No logs found for request: " .. r.xid }
